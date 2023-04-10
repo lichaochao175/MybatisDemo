@@ -4,7 +4,7 @@ import lombok.Data;
 
 
 /**
- * @author Lcc 推送到test分支
+ * @author Lcc 推送到lcc分支
  * @date 2023/2/2 10:49 PM
  * 封装结果集
  */
