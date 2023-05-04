@@ -2,7 +2,6 @@ package com.example.lcc.service.impl;
 
 import com.example.lcc.comm.Result;
 import com.example.lcc.entity.SysMenu;
-import com.example.lcc.entity.comm.CommId;
 import com.example.lcc.entity.dto.SysMenuDto;
 import com.example.lcc.entity.vo.SysMenuVo;
 import com.example.lcc.mapper.SysMenuMapper;
@@ -11,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -22,7 +20,6 @@ import java.util.List;
 public class SysMenuServiceImpl   implements SysMenuService {
     @Autowired
     private SysMenuMapper sysMenuMapper;
-
 
     @Override
     public SysMenu getAll(String id ) {

@@ -2,10 +2,7 @@ package com.example.lcc.mapper;
 
 import com.example.lcc.entity.SysUser;
 
-import java.util.List;
-
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
 @Mapper
 public interface SysUserMapper {
 

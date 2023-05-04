@@ -11,7 +11,13 @@ public enum ResultCodeEnum {
   ERROR(500,"失败"),
   BIZ_ERROR(501,"通用业务异常");
 
+  /**
+   * 编码
+   */
   private final   Integer  code;
+  /**
+   * 编码信息
+   */
   private  final String msg;
 
 
