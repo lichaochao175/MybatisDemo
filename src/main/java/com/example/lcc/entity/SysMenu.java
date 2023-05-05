@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.io.Serializable;
-
+import java.util.Date;
 
 
 @Data
@@ -16,6 +16,9 @@ public class SysMenu  implements Serializable {
 
     private String name;
 
-    private Integer age;
+    private Integer patentId;
+    private Date  updateTime;
+    private Date  createTime;
+    private Integer delFlag;
 
 }
