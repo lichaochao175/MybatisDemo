@@ -10,6 +10,12 @@ import lombok.Data;
  */
 @Data
 public class SysMenuDto extends CommId {
+    @Override
+    public String toString() {
+        return "SysMenuDto{" +
+                "name='" + name + '\'' +
+                '}';
+    }
 
     private String name;
 }

@@ -1,10 +1,13 @@
 package com.example.lcc.controller;
 
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.example.lcc.comm.Result;
 import com.example.lcc.entity.SysMenu;
 import com.example.lcc.entity.comm.CommId;
 import com.example.lcc.entity.dto.SysMenuDto;
+import com.example.lcc.entity.vo.SysMenuVo;
 import com.example.lcc.mapper.SysMenuMapper;
 import com.example.lcc.service.impl.SysMenuServiceImpl;
 import org.slf4j.Logger;
@@ -33,15 +36,14 @@ public class SysMenuController {
     private SysMenuMapper sysMenuMapper;
 
     @Autowired
-    public SysMenuController(SysMenuServiceImpl sysMenuServiceImpl, SysMenuMapper sysMenuMapper) {
+    public SysMenuController(SysMenuServiceImpl sysMenuServiceImpl, SysMenuMapper sysMenuMapper,RedisTemplate redisTemplate) {
         this.sysMenuServiceImpl = sysMenuServiceImpl;
-
+        this.redisTemplate = redisTemplate;
         this.sysMenuMapper = sysMenuMapper;
     }
 
     @GetMapping("/getAll")
     public SysMenu getAll() {
-
         return sysMenuServiceImpl.getAll("1");
     }
 
@@ -54,14 +56,17 @@ public class SysMenuController {
         return integer;
     }
 
-    @PostMapping("/cacheKeys")
-    public void cacheKeys(@RequestBody String id) {
-        List<SysMenuDto> sysMenuDtos = sysMenuServiceImpl.SelectCacheMenus(id);
-        redisTemplate.opsForValue()
-                .set("sysMenuDtos", sysMenuDtos);
+    @GetMapping("/getCach")
+    public String  getCach( ) {
+        return (String)redisTemplate.opsForValue().get("lcc");
+    }
 
+    @PostMapping("/cacheKeys")
+    public void cacheKeys(@RequestParam  String id) {
+        List<SysMenuDto> sysMenuDtos = sysMenuServiceImpl.SelectCacheMenus(id);
+        JSONObject jsonObject = JSON.parseObject(sysMenuDtos.toString());
         redisTemplate.opsForValue()
-                .set("lcc", sysMenuDtos);
+                .set("sysMenuDtos", jsonObject);
     }
 
     /**
@@ -73,10 +78,11 @@ public class SysMenuController {
         log.info("redis获取到的值：====>>>>>{}", redisTemplate.opsForValue().get("lcc"));
         log.info("redis获取存储的值：====>>>>>{}", redisTemplate.opsForValue().get("sysMenuDtos"));
         log.info("sysMenuDtos的值:{}", sysMenuDtos);
+
     }
 
     @GetMapping("/getLeftTable")
-    public Result getTables(@RequestBody CommId commId) {
+    public Result<List<SysMenuVo>> getTables(@RequestBody CommId commId) {
         return sysMenuServiceImpl.selectMultilist(commId.getId());
     }
 

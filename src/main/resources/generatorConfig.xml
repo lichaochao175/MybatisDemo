@@ -23,8 +23,10 @@
           -->
         <javaClientGenerator targetPackage="com.example.lcc.mapper" targetProject="src/main/java" type="XMLMAPPER" />
 
-        <table schema="mall" tableName="sys_role_menu" domainObjectName="SysRoleMenu"/>
-        <table schema="mall" tableName="sys_menu" domainObjectName="SysMenu"/>
+        <table tableName="role_menu" domainObjectName="RoleMenu" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+        <table tableName="user" domainObjectName="User" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+        <table tableName="user_menu" domainObjectName="UserMenu" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+        <table tableName="user_role" domainObjectName="UserRole" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
 
     </context>
 </generatorConfiguration>
